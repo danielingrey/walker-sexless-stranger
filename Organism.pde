@@ -1,4 +1,4 @@
-class Organism {
+class Organism extends Grid {
 //PImage photo;  
   int[] genotype; //genotype
   String sex; //organism gender
@@ -7,21 +7,24 @@ class Organism {
   int deathAge; //age organism will die of natural causes
   int aggro; //agressiveness of organism
   int speed; //how fast organism can travel
-  color colour; //colour of organism
+  //color colour; //colour of organism
   int hunger; //level of hunger
   int posX; //x position on grid
   int posY; //x position on grid
   color[][] shape; //pixel data for display
   int id;
   
-  Organism(int[] genes, int px, int py, boolean bright, int _id) {    
+  Organism(int[] genes, int px, int py, boolean bright, int _id) {  
+    super(bright, px, py);
+    super.setColour(genes[1]+1);
     String[] genders = {"male", "female", "asexual"};
-    color[] colB1 = {#0000CD,#CD0000,#CD00CD,#00CD00,#00CDCD,#CDCD00,#CDCDCD};
-    color[] colB2 = {#0000FF,#FF0000,#FF00FF,#00FF00,#00FFFF,#FFFF00,#FFFFFF};   
+    //color[] colB1 = {#0000CD,#CD0000,#CD00CD,#00CD00,#00CDCD,#CDCD00,#CDCDCD};
+    //color[] colB2 = {#0000FF,#FF0000,#FF00FF,#00FF00,#00FFFF,#FFFF00,#FFFFFF};   
     genotype = genes;
-    sex = genders[genotype[0]];
-    if(!bright) colour = colB1[genotype[1]];
-    else colour = colB2[genotype[1]];
+    sex = genders[genotype[0]];    
+    println(genotype[1]);
+    //if(!bright) colour = colB1[genotype[1]];
+    //else colour = colB2[genotype[1]];
     reproAge = genotype[2];
     if (genotype[3] == 1) canRepro = true;
     else canRepro = false;
@@ -30,7 +33,8 @@ class Organism {
     speed = genotype[6];
     posX = px;
     posY = py;
-    id = _id; 
+    id = _id;
+     
     //pixelData();   
   }
   
@@ -56,11 +60,11 @@ class Organism {
     return aggro < 1;
   }
   
-  color getColour(){
+  /*color getColour(){
     return colour;
-  }
+  }*/
   
-  String getSex() {
+  public String getSex() {
     return sex;
   }
   

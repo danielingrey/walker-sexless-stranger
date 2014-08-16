@@ -20,11 +20,12 @@ class DisplayGrid {
     female = loadPixelData("female");
     asexual = loadPixelData("asexual");
     food = loadPixelData("food");
-    for(int i = 0; i < 8; i++) { //may not need
+    empty = loadPixelData("empty");
+    /*for(int i = 0; i < 8; i++) { //may not need
        for(int j = 0; j < 8; j++) {
          empty[i][j] = 0;
        }
-    }
+    }*/
   }
   
   int[][] loadPixelData(String filename) {
@@ -32,10 +33,10 @@ class DisplayGrid {
      photo = loadImage(filename + ".png");
      for(int i = 0; i < 8; i++) {
        for(int j = 0; j < 8; j++) {
-         println(hex(photo.pixels[(j*8) + i]));
+         //println(hex(photo.pixels[(j*8) + i]));
          if(hex(photo.pixels[(j*8) + i]).equals("FFFFFFFF")) shape[i][j] = 1;
          else shape[i][j] = 0;
-         println(shape[i][j]);
+         //println(shape[i][j]);
        }
      }
      return shape;
@@ -51,7 +52,7 @@ class DisplayGrid {
         //println(y);
         if(tile == "male") {
           display[i][j] = col * male[x][y];
-          println(male[x][y]);
+          //println(male[x][y]);
         } else if(tile =="female") {
           display[i][j] = col * female[x][y];
         } else if(tile =="asexual") {

@@ -14,7 +14,7 @@ class Grid {
     posX = px;
     posY = py;    
     if(bright) colour = colBright[0];
-    println(hex(colBright[0]));
+    //println(hex(colBright[0]));
     if(!bright) colour = colDark[0];     
   }
   
@@ -54,5 +54,9 @@ class Grid {
     return fd;
   }*/
   
+  void setXY(int x, int y) {
+    posX = x;
+    posY = y;
+  }
   
 }

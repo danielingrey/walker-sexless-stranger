@@ -1,8 +1,8 @@
 class DisplayGrid {
   PImage photo;  
   color[][] display;  
-  color[] bright = {#000000,#0000CD,#CD0000,#CD00CD,#00CD00,#00CDCD,#CDCD00,#CDCDCD};
-  color[] dark = {#000000,#0000FF,#FF0000,#FF00FF,#00FF00,#00FFFF,#FFFF00,#FFFFFF};
+ // color[] bright = {#000000,#0000CD,#CD0000,#CD00CD,#00CD00,#00CDCD,#CDCD00,#CDCDCD};
+  //color[] dark = {#000000,#0000FF,#FF0000,#FF00FF,#00FF00,#00FFFF,#FFFF00,#FFFFFF};
   int[][] male;
   int[][] female;
   int[][] asexual;
@@ -60,7 +60,7 @@ class DisplayGrid {
         } else if(tile =="food") {
           display[i][j] = col * food[x][y];
         } else if(tile =="empty") {
-          display[i][j] = col * empty[x][y];
+          display[i][j] = col * empty[x][y];          
         }
        y++; 
       }
@@ -73,6 +73,7 @@ class DisplayGrid {
       for(int j = 0; j < 192; j++) {
         //println(hex(display[i][j]));
         stroke(display[i][j]);
+        
         fill(display[i][j]);
         rect(i*4, j*4, 4, 4);
       }

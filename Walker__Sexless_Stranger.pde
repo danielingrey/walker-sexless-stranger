@@ -2,6 +2,7 @@ DisplayGrid disp;
 //ArrayList<Organism> orgs; //holds organisms
 //ArrayList<Food> food;
 //ArrayList<Grid> grid;
+//PImage img;
 int popSize = 200; //initial starting population
 int foodSize = 50; 
 int gNum = 3; //number of genders
@@ -25,8 +26,9 @@ int w = 32;
 int count = 0;
 
 void setup() {
-  size(256*4, 192*4);
-  frameRate(17);  //17
+  //size(1024, 768);
+   orientation(LANDSCAPE);
+  //frameRate(17);  //17
   //orgs = new ArrayList<Organism>();
  // food = new ArrayList<Food>();
   //grid = new ArrayList<Grid>();
@@ -36,6 +38,7 @@ void setup() {
     }
   }
   //gridBright = new boolean[32][24]; //256/8,192/8
+  //img = loadImage("male.png");
   disp = new DisplayGrid();
   //grid = new Grid[32][24];  
   for (int x = 0; x < 32; x++) {    

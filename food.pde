@@ -1,24 +1,17 @@
-//food data randomly appear
+//holds food data, child of Grid class
+
 class Food extends Grid {
-  int nourishment;
-  int toxicity;
-  int stimulant;
-  int aggression;
-  //int posX;
-  //int posY;
-  //color colour;
+  int nourishment; //nourishment level of a food object increases death age of organism eating it 
+  int toxicity; //toxicity decreases death age
   
+  //constructor
+  //inputs: (x,y) coordinates, bright variable
   Food(int px, int py, boolean bright) {
-    super(bright, px, py);
-    super.setColour(int(random(1,8)));
-    //color[] colB1 = {#0000CD,#CD0000,#CD00CD,#00CD00,#00CDCD,#CDCD00,#CDCDCD};
-    //color[] colB2 = {#0000FF,#FF0000,#FF00FF,#00FF00,#00FFFF,#FFFF00,#FFFFFF};
-    //if(!bright) colour = colB1[int(random(0,7))];
-    //else colour = colB2[int(random(0,7))];    
-    nourishment = int(random(1,8));
-    toxicity = int(random(-10,1));
-    stimulant = int(random(-10,10));
-    aggression = int(random(-10,10));
+    super(bright, px, py); //call parent class and apply variables
+    super.setColour(int(random(1,8))); //randomly choose a colour from the palette for the food
+    //randomly set nourishment and toxicity of food    
+    nourishment = int(random(1,8)); 
+    toxicity = int(random(-10,1));    
   }
 
   int getNourishment() {

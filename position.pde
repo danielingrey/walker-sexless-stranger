@@ -1,3 +1,5 @@
+//class to hold (x,y) coordinates
+
 class Position {
   int posX;
   int posY;

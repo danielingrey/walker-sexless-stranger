@@ -1,71 +1,38 @@
+//holds data for organism objects
+//Organism is a child of the Grid class
+//organism objects are the phenotypes based on the genotypes inputted to their constructor
+
 class Organism extends Grid {
-//PImage photo;
-  int age = 0;
+  int age = 0; //age of organism
   int[] genotype; //genotype
   String sex; //organism gender
-  String[] genders = {"male", "female", "asexual"};
-  int reproAge; //age organism can achieve reproduction
+  String[] genders = {"male", "female", "asexual"}; //genders
+  int reproAge; //age organism can reach reproduction (not implemented yet..)  
   boolean canRepro; //can the organism reproduce?
   int deathAge; //age organism will die of natural causes
-  int aggro; //agressiveness of organism
-  int speed; //how fast organism can travel
-  //color colour; //colour of organism
-  int hunger; //level of hunger
-  //int posX; //x position on grid
-  //int posY; //x position on grid
-  //color[][] shape; //pixel data for display
-  //int id;
-  boolean stepped = false;
+  int aggro; //agression of organism  
+  boolean stepped = false; //has the organism taken its turn yet
   
+  //constructor
+  //inputs: genotype, (x,y) coordinates, bright or not bright variable
   Organism(int[] genes, int px, int py, boolean bright) {  
-    super(bright, px, py);
-    super.setColour(genes[1]+1);
-    
-    //color[] colB1 = {#0000CD,#CD0000,#CD00CD,#00CD00,#00CDCD,#CDCD00,#CDCDCD};
-    //color[] colB2 = {#0000FF,#FF0000,#FF00FF,#00FF00,#00FFFF,#FFFF00,#FFFFFF};   
+    super(bright, px, py); //call parent class and set variables
+    super.setColour(genes[1]+1); //call parent class and set colour based on corresponding genotype array location. 1 is added to the number as 0 is black on both colour palettes       
     genotype = genes;
-    sex = genders[genotype[0]];    
-    //println(genotype[1]);
-    //if(!bright) colour = colB1[genotype[1]];
-    //else colour = colB2[genotype[1]];
-    reproAge = genotype[2];
-    if (genotype[3] == 1) canRepro = true;
+    sex = genders[genotype[0]]; //apply gender type based on genotype   
+    reproAge = genotype[2]; //set reproduction age (not implemented as of yet...)
+    if (genotype[3] == 1) canRepro = true; //set if the organism can reproduce
     else canRepro = false;
-    deathAge = genotype[4];
-    aggro = genotype[5];
-    speed = genotype[6];
-    //posX = px;
-    //posY = py;
-    
-     
-    //pixelData();   
-  }
-  
-  void setColour(color c, int x, int y) {       
-    colour = c;
-  }  
-  
-  /*void pixelData() {
-     photo = loadImage(sex + ".png");
-     for(int i = 0; i < 8; i++) {
-       for(int j = 0; j < 8; j++) {
-         if(hex(photo.pixels[i]) == "FFFFFFFF") shape[i][j] = colour;
-         else shape[i][j] = #000000;
-       }
-     }
-  }*/
-  
+    deathAge = genotype[4]; //set death age
+    aggro = genotype[5];   //set aggression
+  }   
+ 
+  //checks if an organism can attack another organism
+  //input: current organism
+  //output: true if its aggression is high enough, false otherwise
   boolean attack(Organism org) {
     return aggro > 8;
-  }
-  
-  boolean runAway(Organism org) {
-    return aggro < 1;
-  }
-  
-  /*color getColour(){
-    return colour;
-  }*/
+  } 
   
   public String getSex() {
     return sex;
@@ -82,13 +49,6 @@ class Organism extends Grid {
   int getDeathAge() {
     return deathAge;
   }
-  /*String toString() {
-    return str(id);
-  }*/
-  
-  /*color[][] getShape() {
-    return shape;
-  }*/
   
   boolean getStepped() {
     return stepped;
@@ -98,17 +58,12 @@ class Organism extends Grid {
     stepped = b;
   }
   
+  //eat food. A piece of food effects an organism's deathAge both positively and negatively
+  //Input: food
   void eat(Food fd) {
     deathAge += fd.getNourishment();
-    deathAge += fd.getToxicity();
-    //aggro += fd.getPsychoactive("aggression");
-    //speed += fd.getPsychoactive("stimulant");
-  }  
-  
-  /*public void step(int dirX, int dirY) {
-    posX += dirX;
-    posY += dirY;
-  }*/
+    deathAge += fd.getToxicity();   
+  }
   
   int getX() {
     return posX;
@@ -120,7 +75,7 @@ class Organism extends Grid {
   
   int[] getGenes() {
     return genotype;
-  }
+  }  
   
   boolean canReproduce() {
     return canRepro;
